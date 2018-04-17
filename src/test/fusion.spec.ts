@@ -21,7 +21,7 @@ describe('Doc fusion', function () {
         const f = new df.DocFusion({
             generationDirectory: '/tmp',
         });
-        const fileName = await f.generateDoc({ outputFileName: 'x.docx' }, {});
+        const fileName = await f.generateDoc({ outputFileName: 'Document.docx' }, {});
         expect(fileName).eql('/tmp/x.docx');
     });
 });
