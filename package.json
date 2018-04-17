@@ -1,0 +1,8 @@
+{
+  "name": "ramzy",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": " https://github.com/RamzyK/sandbox3.git",
+  "author": "Kermad <gkermad.ramzy@gmail.com>",
+  "license": "MIT"
+}
