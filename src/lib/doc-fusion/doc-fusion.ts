@@ -33,7 +33,7 @@ export class DocFusion {
         if (!await exist(finalOptions.generationDirectory)) {
             throw Error('Directory does not exist!');
         } else {
-            if (!fs.existsSync(inputFileName)) {
+            if (await !exist(inputFileName)) {
                 throw Error(inputFileName + ': File does not exist!');
 
             } else {
