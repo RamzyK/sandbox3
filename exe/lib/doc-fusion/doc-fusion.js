@@ -23,15 +23,14 @@ class DocFusion {
         const inputFileName = path.resolve(finalOptions.generationDirectory, finalOptions.inputFileName);
         let outputFileName = path.resolve(finalOptions.generationDirectory, finalOptions.outputFileName);
         if (!await exist(finalOptions.generationDirectory)) {
-            throw Error('Directory does not exist!');
+            console.log('Directory does not exist!');
         }
         else {
             if (await !exist(inputFileName)) {
-                throw Error(inputFileName + ': File does not exist!');
+                console.log('File does not exist!');
             }
             else {
                 const content = await read(inputFileName, 'binary');
-                console.log('CONTENT: ', content);
                 const zip = new jsZip(content);
                 const doc = new docxtemplater();
                 doc.loadZip(zip);
@@ -40,9 +39,10 @@ class DocFusion {
                 const buf = doc.getZip().generate({ type: 'nodebuffer' });
                 if (outputFileName === '' || outputFileName === undefined) {
                     outputFileName = this.generateRndmName(DocFusion.cpt);
+                    console.log('File named!');
                 }
                 await write(outputFileName, buf);
-                console.log('Done!');
+                console.log('Fusion done!');
                 return outputFileName;
             }
         }
@@ -53,4 +53,18 @@ class DocFusion {
 }
 DocFusion.cpt = 0;
 exports.DocFusion = DocFusion;
+let optionfusion = {
+    generationDirectory: 'C:\\Users\\raker\\Desktop',
+    inputFileName: 'Document.docx',
+    outputFileName: 'doc_output.docx'
+};
+let dataDoc = {
+    last_name: 'Kermad',
+    first_name: 'Ramzy',
+    phone: '06-06-06-06-06',
+    description: 'Stage dev Javascript/ Typescript'
+};
+let d = new DocFusion({});
+let fusionned = d.generateDoc(optionfusion, dataDoc);
+console.log('doc fusionned');
 //# sourceMappingURL=doc-fusion.js.map
